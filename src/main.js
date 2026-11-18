@@ -34,7 +34,7 @@ async function stage(kind) {
     stages[kind] = await createStage3D({ canvas: $('#c'), quality, preview });
   } else {
     const { createStageVector } = await import('./vector/stage.js');
-    stages[kind] = createStageVector({ root: $('#v'), preview });
+    stages[kind] = createStageVector({ root: $('#v'), preview, quality });
   }
   return stages[kind];
 }
@@ -48,6 +48,7 @@ async function show(kind) {
   shown = kind;
   $('#c').hidden = kind !== '3d';
   $('#v').hidden = kind !== 'vector';
+  $('#vig').hidden = kind !== 'vector';
 }
 
 function webgl() {

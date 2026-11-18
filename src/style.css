@@ -3,6 +3,7 @@
 html, body { margin: 0; height: 100%; overflow: hidden; background: var(--bg); color: var(--fg); font: 15px/1.4 ui-rounded, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif; }
 #c, #v { position: fixed; inset: 0; width: 100%; height: 100%; display: block; transition: opacity 1.2s ease; }
 #v svg { width: 100%; height: 100%; display: block; }
+#vig { position: fixed; inset: 0; pointer-events: none; background: radial-gradient(ellipse at center, transparent 50%, rgba(0, 0, 0, 0.5) 100%); }
 .fade { opacity: 0; }
 #caption { position: fixed; left: 24px; top: 20px; font-size: 15px; letter-spacing: 0.02em; color: var(--muted); text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6); opacity: 0; transition: opacity 1.5s ease; pointer-events: none; }
 #caption.on { opacity: 0.9; }

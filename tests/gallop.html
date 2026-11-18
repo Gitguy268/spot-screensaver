@@ -1,0 +1,33 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Gallop frames</title>
+<!-- Renders the 3D dog's gallop side-on on a transparent background, for scripts/gallop-frames.mjs -->
+<style>html,body{margin:0;background:transparent}canvas{display:block}</style>
+<canvas id="c" width="720" height="440"></canvas>
+<script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { createDog, SPOT } from '../src/three/lib/dog.js';
+const canvas = document.getElementById('c');
+const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true, preserveDrawingBuffer: true });
+renderer.setClearColor(0x000000, 0);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 0.8;
+const scene = new THREE.Scene();
+scene.environment = new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(), 0.04).texture;
+scene.environmentIntensity = 0.5;
+const sun = new THREE.DirectionalLight(0xfff0d8, 3.2); sun.position.set(-2, 4, 3); scene.add(sun);
+const back = new THREE.DirectionalLight(0xffe2b0, 2.4); back.position.set(3, 2, -3); scene.add(back); // warm rim
+scene.add(new THREE.HemisphereLight(0xcfe3ff, 0x4a6a32, 0.6));
+const cam = new THREE.OrthographicCamera(-0.75, 0.75, 0.46, -0.46, 0.1, 20) // bounds are offsets from the camera, which sits at y 0.42;
+const dog = createDog(SPOT, 24);
+scene.add(dog.group);
+const d = { pos: { x: 0, z: 0 }, heading: Math.PI / 2, speed: 6, pose: 'stand', look: { x: 5, y: 0.3, z: 0 }, headDown: 0, sniff: 0, pant: 0.8, wag: 0.8, alert: 0.4, crouch: 0, hop: 0, air: 0, rear: 0, carrying: false };
+let x = 0;
+const step = (dt) => { x += d.speed * dt; d.pos.x = x; d.look.x = x + 4; dog.update(dt, d); cam.position.set(x - 0.02, 0.42, 4); cam.lookAt(x - 0.02, 0.42, 0); renderer.render(scene, cam); };
+for (let i = 0; i < 90; i++) step(1 / 60); // settle into the gallop
+window.cycle = 1 / (6 * 0.24 / 0.4); // seconds per stride at this speed (dog.js: f = v * duty / STRIDE)
+window.step = step;
+window.ready = true;
+</script>
