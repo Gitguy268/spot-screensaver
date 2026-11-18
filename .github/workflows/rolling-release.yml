@@ -181,7 +181,7 @@ jobs:
           GH_REPO: ${{ github.repository }}
           SHA: ${{ needs.build.outputs.sha }}
           BRANCH: main
-          PRERELEASE: "false"
+          PRERELEASE: "true"
         run: |
           set -euo pipefail
           mkdir -p out

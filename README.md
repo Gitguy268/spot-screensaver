@@ -23,7 +23,7 @@ Spot is a two-year-old black lab with a red collar. In this screensaver he sits 
 There are two looks. The **3D** version is a three.js scene with a 3D model of Spot. The **vector** version is an SVG illustration traced from his portrait. **Both** takes turns, one loop each. Everything is one self-contained `index.html`, which the macOS screen saver bundle carries inside it.
 
 <!-- live-links -->
-**Live:** [gitguy268.github.io/spot-screensaver](https://gitguy268.github.io/spot-screensaver/)
+**Live:** [gitguy268.github.io/spot-screensaver](https://gitguy268.github.io/spot-screensaver/) · [gitguy268-spot-screensaver.vercel.app](https://gitguy268-spot-screensaver.vercel.app)
 <!-- /live-links -->
 
 ## Install the macOS screen saver
@@ -185,7 +185,7 @@ npm run capture                         # regenerates the pictures in docs/
 CI runs the build check, the unit tests and the smoke test on every push, and builds and checks the `.saver` on a macOS runner.
 
 Last local run, on a MacBook with an M4:
-- 60 fps in Chromium for both styles at Medium; in WebKit, 59 fps for 3D and 43 fps for vector.
+- Chromium at Medium: 55–60 fps for both styles. WebKit: 38–59 fps, depending on what else the Mac is doing.
 - 30 fps inside the screen saver bundle.
 - A 10-minute soak at 2560×1440 High held 30 fps, with the JS heap flat at about 35 MB.
 
