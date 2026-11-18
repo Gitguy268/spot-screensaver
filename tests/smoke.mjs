@@ -23,7 +23,8 @@ for (const [name, type] of [['chromium', chromium], ['webkit', webkit]].filter((
     try { await page.waitForFunction(() => window.__spotSaver?.ready, null, { timeout: 180000 }); } catch { problems.push(`${name}/${style}: never ready`); await page.close(); continue; }
     for (const scene of ['nap', 'dream', 'chase', 'wake']) {
       await page.evaluate((s) => window.__spotSaver.jump(s, 5), scene);
-      await page.waitForTimeout(gpu ? 1200 : 2500);
+      // wait for the frame loop to move on (software rendering in CI can take seconds per frame)
+      await page.waitForFunction(() => window.__spotSaver.frame().t > 5.05, null, { timeout: 60000 }).catch(() => {});
       const f = await page.evaluate(() => window.__spotSaver.frame());
       const want = scene === 'chase' ? 'dream' : 'room';
       if (f.phase !== scene || f.world !== want) problems.push(`${name}/${style}/${scene}: got ${f.phase}/${f.world}`);
