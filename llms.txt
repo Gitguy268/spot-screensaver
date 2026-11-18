@@ -1,0 +1,11 @@
+# Spot Screensaver
+
+> A screensaver starring Spot, a black labrador with a red collar: he dozes in his blanket by a cabin fire, dreams (paws twitching, lips puffing), chases a butterfly, a tennis ball or a red laser dot through a golden meadow in his dream, then wakes up and dozes off again. In 3D (three.js, an AI-generated 3D model of the real dog) or in vector (SVG traced from his portrait). Runs as a macOS .saver and in any browser from one self-contained index.html. MIT licence for the code.
+
+- URL options: style=3d|vector|alternate, quality=low|medium|high, scene=nap|dream|chase|wake, speed, seed, fps, sound=1.
+- No network requests; nothing is uploaded or stored besides the chosen style and quality in localStorage.
+
+## Links
+- [Watch it](https://gitguy268.github.io/spot-screensaver/)
+- [Source and the macOS screen saver](https://github.com/Gitguy268/spot-screensaver)
+- [Spot-light HD, the game](https://github.com/Gitguy268/spot-light-hd)

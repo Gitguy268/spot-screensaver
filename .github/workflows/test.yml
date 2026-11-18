@@ -1,0 +1,46 @@
+name: Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - run: npm ci
+      - name: The committed index.html matches the sources
+        run: npm run check-build
+      - name: Unit tests (the director)
+        run: npm run test:unit
+      - run: npx playwright install --with-deps chromium webkit
+      - name: Smoke test, both styles x every scene, Chromium (SwiftShader) and WebKit
+        run: npm run smoke
+
+  saver:
+    runs-on: macos-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - name: Build the screen saver (arm64 + x86_64, ad-hoc signed)
+        run: bash macos/build.sh
+      - name: Check the bundle
+        run: |
+          cd "$(mktemp -d)" && ditto -x -k "$GITHUB_WORKSPACE/dist/SpotScreensaver.saver.zip" .
+          plutil -lint SpotScreensaver.saver/Contents/Info.plist
+          codesign --verify --strict --verbose SpotScreensaver.saver
+          lipo -archs SpotScreensaver.saver/Contents/MacOS/SpotScreensaver | grep -q arm64
+          test -s SpotScreensaver.saver/Contents/Resources/web/index.html
+      - uses: actions/upload-artifact@v7
+        with:
+          name: SpotScreensaver.saver
+          path: dist/SpotScreensaver.saver.zip

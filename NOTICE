@@ -1,0 +1,25 @@
+Spot Screensaver is MIT licensed, see LICENSE.
+
+Third-party parts keep their own licences:
+- three.js 0.187 and its examples (GLTFLoader, post-processing passes, RoomEnvironment, Sky,
+  RoundedBoxGeometry), bundled into index.html: MIT, Copyright 2010-2026 three.js authors.
+- Build and test tools, not shipped: Vite and vite-plugin-singlefile (MIT), Playwright
+  (Apache-2.0), imagetracerjs (Unlicense, used by scripts/trace.mjs), pngjs (MIT). Blender and
+  ImageMagick were used as tools to prepare the 3D model and the traced pictures; nothing from
+  them is shipped.
+
+The cabin, the garden, the procedural textures and the galloping dog (src/three/lib/) come from
+Spot-light HD (github.com/Gitguy268/spot-light-hd) by the same author, MIT. The vector gallop
+(src/vector/traced/gallop.js) is traced from renders of that dog and is MIT too.
+
+Pictures of Spot that are NOT covered by the MIT licence (ask before reusing them):
+- assets/spot-blanket.glb: an AI-generated 3D model of the author's dog in a blanket, made for
+  the author, with its textures resized for the web (blender/prepare_scan.py).
+- assets/spot-bandana.webp: an AI-generated portrait of the author's dog, shown as the framed
+  photo above the fireplace.
+- src/vector/traced/spot-blanket.js: vector shapes traced (scripts/trace.mjs) from an
+  AI-generated portrait of the author's dog.
+- index.html embeds all three, and the screenshots in docs/ and the screen saver thumbnails in
+  macos/ show them.
+
+The page loads nothing from the network and uses the system's fonts.

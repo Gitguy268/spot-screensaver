@@ -1,0 +1,14 @@
+name: Idea
+description: Something Spot could dream about, or a setting you'd like
+labels: [enhancement]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like?
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why would it help?
