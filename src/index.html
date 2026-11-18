@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spot Screensaver</title>
+<meta name="description" content="Spot the black lab naps by the fire, dreams, and chases butterflies, balls and laser dots in his dream. A macOS screen saver and a browser screensaver, in 3D and in vector.">
+<meta name="theme-color" content="#120e0b">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23120e0b'/%3E%3Cpath d='M18 40c0-12 6-20 14-20s14 8 14 20c0 4-4 6-14 6s-14-2-14-6z' fill='%23222'/%3E%3Cellipse cx='20' cy='30' rx='5' ry='10' fill='%23181818'/%3E%3Cellipse cx='44' cy='30' rx='5' ry='10' fill='%23181818'/%3E%3Cpath d='M22 44h20' stroke='%23c81d1d' stroke-width='4'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<canvas id="c" aria-label="Spot napping by the fire, in 3D"></canvas>
+<div id="v" aria-label="Spot napping by the fire, drawn in vector" hidden></div>
+<div id="caption" aria-live="polite"></div>
+<div id="loading"><div class="spinner"></div><p>Spot is getting comfy…</p></div>
+<nav id="bar" aria-label="Screensaver controls">
+  <div class="group" role="group" aria-label="Style">
+    <button data-style="3d" aria-pressed="true">3D</button>
+    <button data-style="vector" aria-pressed="false">Vector</button>
+    <button data-style="alternate" aria-pressed="false">Both</button>
+  </div>
+  <div class="group" role="group" aria-label="Jump to">
+    <button data-scene="nap">Nap</button>
+    <button data-scene="dream">Dream</button>
+    <button data-scene="chase">Chase</button>
+    <button data-scene="wake">Wake</button>
+  </div>
+  <label>Quality <select id="quality"><option value="low">Low</option><option value="medium">Medium</option><option value="high">High</option></select></label>
+  <button id="sound" aria-pressed="false">Sound off</button>
+  <button id="full">Full screen</button>
+  <a href="https://github.com/Gitguy268/spot-screensaver" target="_blank" rel="noopener">Get the Mac screen saver</a>
+</nav>
+<script type="module" src="./main.js"></script>
+</body>
+</html>
